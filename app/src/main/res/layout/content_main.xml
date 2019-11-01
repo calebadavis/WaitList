@@ -15,10 +15,8 @@
         android:enabled="true"
         android:hint="Last"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/fetch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clients"
-        app:layout_constraintVertical_bias="0.501" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fname" />
 
     <Button
         android:id="@+id/fetch"
@@ -26,8 +24,8 @@
         android:layout_height="wrap_content"
         android:onClick="onFetch"
         android:text="Fetch"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/remove" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/clients"
@@ -49,7 +47,6 @@
         android:enabled="true"
         android:hint="First"
         android:inputType="none|textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/fetch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clients" />
 
@@ -60,10 +57,8 @@
         android:enabled="true"
         android:hint="123-456-7890"
         android:inputType="phone"
-        app:layout_constraintBottom_toTopOf="@+id/fetch"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fname" />
+        app:layout_constraintTop_toBottomOf="@+id/lname" />
 
     <Button
         android:id="@+id/add"
@@ -71,9 +66,8 @@
         android:layout_height="wrap_content"
         android:onClick="onAdd"
         android:text="Add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/remove"
-        app:layout_constraintStart_toEndOf="@+id/fetch" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone" />
 
     <Button
         android:id="@+id/remove"
@@ -81,6 +75,15 @@
         android:layout_height="wrap_content"
         android:onClick="onRemove"
         android:text="Remove"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add" />
+
+    <Button
+        android:id="@+id/Setup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onConfigure"
+        android:text="Setup"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

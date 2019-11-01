@@ -1,5 +1,7 @@
 package vegas.caleb.waitlist;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -36,14 +38,14 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
 
-    private static final String
-            hostname = "192.168.0.1",
-            user = "cdavis",
-            pass = "where4Uhack",
-            shareName = "cdavis",
-            pathToFiles = "public_html",
+    private String
+            hostname,
+            user,
+            pass,
+            shareName,
+            pathToFiles,
             custFileName = "cust_list.csv",
-            url = "smb://" + hostname + "/" + shareName + "/" + pathToFiles + "/" + custFileName;
+            url;
 
 
 
@@ -62,8 +64,6 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
 
         if (savedInstanceState != null && savedInstanceState.containsKey("Customers")) {
             _customers = savedInstanceState.getParcelableArrayList("Customers");
@@ -93,6 +93,23 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         etFirst = findViewById(R.id.fname);
         etLast = findViewById(R.id.lname);
         etPhone = findViewById(R.id.phone);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences pref = getApplicationContext().getSharedPreferences(Constants.PREFS_FILENAME, 0); // 0 - for private mode
+        if (pref.contains(Constants.PREFS_USER_KEY)) user = pref.getString(Constants.PREFS_USER_KEY, "");
+        if (pref.contains(Constants.PREFS_PASSWORD_KEY)) pass = pref.getString(Constants.PREFS_PASSWORD_KEY, "");
+        if (pref.contains(Constants.PREFS_SHARENAME_KEY)) shareName = pref.getString(Constants.PREFS_SHARENAME_KEY, "");
+        if (pref.contains(Constants.PREFS_HOSTNAME_KEY)) hostname = pref.getString(Constants.PREFS_HOSTNAME_KEY, "");
+        if (pref.contains(Constants.PREFS_FOLDER_PATH_KEY)) pathToFiles = pref.getString(Constants.PREFS_FOLDER_PATH_KEY, "");
+        if (pref.contains(Constants.PREFS_CUSTFILE_KEY)) custFileName = pref.getString(Constants.PREFS_CUSTFILE_KEY, "cust_list.csv");
+
+        url = "smb://" + hostname + "/" + shareName + "/" + pathToFiles + "/" + custFileName;
+
+        onFetch(null);
 
     }
 
@@ -174,6 +191,11 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         }).start();
     }
 
+    public void onConfigure(View v) {
+        Intent intent = new Intent(this, Configuration.class);
+        startActivity(intent);
+    }
+
     public void onFetch(View v) {
 
 
@@ -243,4 +265,5 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         }).start();
 
     }
+
 }
