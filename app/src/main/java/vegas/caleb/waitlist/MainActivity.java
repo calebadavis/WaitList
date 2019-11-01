@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import jcifs.CIFSContext;
 import jcifs.context.SingletonContext;
-import jcifs.netbios.NbtAddress;
-import jcifs.smb.NtlmPasswordAuthentication;
 import jcifs.smb.NtlmPasswordAuthenticator;
 import jcifs.smb.SmbException;
 import jcifs.smb.SmbFile;
@@ -24,7 +22,6 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -44,9 +41,9 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
             user = "cdavis",
             pass = "where4Uhack",
             shareName = "cdavis",
-            sharedFolder = "public_html",
+            pathToFiles = "public_html",
             custFileName = "cust_list.csv",
-            url = "smb://" + hostname + "/" + shareName + "/" + sharedFolder + "/" + custFileName;
+            url = "smb://" + hostname + "/" + shareName + "/" + pathToFiles + "/" + custFileName;
 
 
 
